@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+message Card {
+  string id = 1;
+  string titulo = 2;
+  string conteudo = 3;
+  string lista = 4;
+}
+
+message CreateCardRequest {
+  string titulo = 1;
+  string conteudo = 2;
+  string lista = 3;
+}
+
+message CreateCardResponse {
+  string message = 1;
+  Card card = 2;
+  string error = 3;
+}
+
+message UpdateCardRequest {
+  Card card = 1;
+}
+
+message UpdateCardResponse {
+  string message = 1;
+  Card card = 2;
+  string error = 3;
+}
+
+message DeleteCardRequest {
+  string id = 1;
+}
+
+message DeleteCardResponse {
+  string message = 1;
+  repeated Card cards = 2;
+  string error = 3;
+}
+
+
+message FindAllCardsRequest {
+  
+}
+
+message FindAllCardsResponse {
+  string message = 1;
+  repeated Card cards = 2;
+  string error = 3;
+}
+
+service CardService {
+  rpc CreateCard (CreateCardRequest) returns (CreateCardResponse);
+  rpc UpdateCard (UpdateCardRequest) returns (UpdateCardResponse);
+  rpc DeleteCard (DeleteCardRequest) returns (DeleteCardResponse);
+  rpc FindAllCards (FindAllCardsRequest) returns (FindAllCardsResponse);
+}
